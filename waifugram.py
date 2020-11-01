@@ -3,21 +3,26 @@ import random
 import logging
 import unidecode
 import re
+import os
 import time
 from telegram.ext import *
 from telegram import *
 from telegram.ext import MessageHandler, Filters
 
 db = mysql.connector.connect(
-    host="localhost",
-    user="PUT YOUR ROOT",
-    passwd="PUT YOUR PASSWORD",
-    database="PUT YOUR DB",
+    host=os.environ.get('LOCAL_HOST'),
+    user=os.environ.get('DB_USER'),
+    passwd=os.environ.get('DB_PASSWORD'),
+    database=os.environ.get('DB_NAME'),
     autocommit=True)
 mycursor = db.cursor(buffered=True)
 
+
+ENV = bool(os.environ.get('ENV', False))
+BOT_TOKEN = os.environ.get('BOT_TOKEN', None)
+
 logger = logging.getLogger(__name__)
-updater = Updater('PUT YOUR BOT TOKEN', use_context=True)
+updater = Updater('BOT_TOKEN', use_context=True)
 
 
 def error(update, context):
