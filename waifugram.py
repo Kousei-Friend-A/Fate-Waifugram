@@ -10,19 +10,17 @@ from telegram import *
 from telegram.ext import MessageHandler, Filters
 
 db = mysql.connector.connect(
-    host=os.environ.get('LOCAL_HOST'),
-    user=os.environ.get('DB_USER'),
-    passwd=os.environ.get('DB_PASSWORD'),
-    database=os.environ.get('DB_NAME'),
+    host="40.117.225.68:3306",
+    user="waifubot",
+    passwd="3NJMzZzw5SMCsP6R",
+    database="waifubot",
     autocommit=True)
 mycursor = db.cursor(buffered=True)
 
 
-ENV = bool(os.environ.get('ENV', False))
-BOT_TOKEN = os.environ.get('BOT_TOKEN', None)
 
 logger = logging.getLogger(__name__)
-updater = Updater('BOT_TOKEN', use_context=True)
+updater = Updater('1873481613:AAGmlUyIDXhkOIYehwzldmUwql6i7QqfI8M', use_context=True)
 
 
 def error(update, context):
